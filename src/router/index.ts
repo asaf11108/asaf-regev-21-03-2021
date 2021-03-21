@@ -11,7 +11,8 @@ const routes: Array<RouteRecordRaw> = [
     path: "/favorites",
     name: "Favorites",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Favorites/Favorites.vue"),
+      // eslint-disable-next-line
+      import(/* webpackChunkName: "favorites" */ "../views/Favorites/Favorites.vue"),
   },
 ];
 
