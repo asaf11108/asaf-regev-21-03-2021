@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home/Home.vue";
+import Home from "../views/Home/index.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "Favorites",
     component: () =>
       // eslint-disable-next-line
-      import(/* webpackChunkName: "favorites" */ "../views/Favorites/Favorites.vue"),
+      import(/* webpackChunkName: "favorites" */ "../views/Favorites/index.vue"),
   },
 ];
 
