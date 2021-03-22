@@ -6,4 +6,5 @@ export default defineComponent({
   components: {
     HelloWorld,
   },
+  methods: {},
 });
