@@ -1,5 +1,6 @@
+import { defineComponent } from "vue";
 
-export default {
+export default defineComponent({
   name: 'toolbar',
   components: {},
   props: [],
@@ -17,6 +18,6 @@ export default {
   methods: {
 
   }
-}
+});
 
 
