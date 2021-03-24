@@ -1,9 +1,8 @@
 import { defineComponent } from "vue";
-import { Field, Form, ErrorMessage } from 'vee-validate';
-
+import { Field, Form, ErrorMessage } from "vee-validate";
 
 export default defineComponent({
-  name: 'Autocomplete',
+  name: "Autocomplete",
   components: {
     Field,
     Form,
@@ -27,9 +26,7 @@ export default defineComponent({
         return true;
       }
 
-      return 'This is required';
+      return "This is required";
     },
-  }
-})
-
-
+  },
+});

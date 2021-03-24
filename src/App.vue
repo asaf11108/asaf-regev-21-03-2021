@@ -13,7 +13,7 @@ import Toolbar from "./components/Toolbar/index.vue";
 
 export default defineComponent({
   name: "App",
-  components: {Toolbar}
+  components: { Toolbar },
 });
 </script>
 

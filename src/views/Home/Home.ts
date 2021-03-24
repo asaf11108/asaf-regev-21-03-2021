@@ -6,7 +6,5 @@ export default defineComponent({
   components: {
     Autocomplete,
   },
-  methods: {
-    
-  },
+  methods: {},
 });
