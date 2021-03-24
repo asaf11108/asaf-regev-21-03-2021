@@ -1,23 +1,9 @@
 import { defineComponent } from "vue";
+import ToolbarActions from "../ToolbarActions/ToolbarActions.vue";
 
 export default defineComponent({
   name: 'Toolbar',
-  // components: {},
-  // props: [],
-  // data () {
-  //   return {
-
-  //   }
-  // },
-  // computed: {
-
-  // },
-  // mounted () {
-
-  // },
-  // methods: {
-
-  // }
+  components: {ToolbarActions},
 });
 
 
