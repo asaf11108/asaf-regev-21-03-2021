@@ -1,3 +1,23 @@
 .autocomplete {
+    height: 62px;
+    width: 50%;
+    margin: 0 auto;
 
+    &__form {
+        display: grid;
+        grid-template-columns: 9% 91%;
+    
+        .input-group-text {
+            border-radius: .25rem 0 0 .25rem;
+        }
+
+        input {
+            border-radius: 0 .25rem .25rem 0;
+        }
+    }
+
+    &__error.invalid-feedback {
+        display: unset;
+        grid-column: 1 / -1;
+    }
 }

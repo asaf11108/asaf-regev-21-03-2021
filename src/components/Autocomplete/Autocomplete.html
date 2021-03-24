@@ -1,4 +1,16 @@
-<Form class="autocomplete">
-  <Field name="field" :rules="isRequired" />
-  <ErrorMessage name="field" />
-</Form>
+<div class="autocomplete">
+  <Form class="autocomplete__form" >
+    <span class="input-group-text"><img src="../../assets/search.svg" /></span>
+    <Field
+      type="search"
+      name="query"
+      :rules="validateQuery"
+      class="form-control"
+      placeholder="Search location"
+      autocomplete="off"
+      :validateOnChange="true"
+      :validateOnBlur="true"
+    />
+    <ErrorMessage name="query" class="invalid-feedback autocomplete__error"/>
+  </Form>
+</div>

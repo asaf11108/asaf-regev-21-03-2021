@@ -21,12 +21,14 @@ export default defineComponent({
 
   // },
   methods: {
-    isRequired(value: string) {
-      if (value && value.trim()) {
-        return true;
+    validateQuery(value: string) {
+      if (value === "") {
+        return "This field is required";
       }
-
-      return "This is required";
+      if (!/^[a-zA-Z ]+$/i.test(value)) {
+        return "This field must be a valid email";
+      }
+      return true;
     },
   },
 });
