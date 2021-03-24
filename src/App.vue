@@ -3,28 +3,87 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/favorites">Favorites</router-link>
   </div>
-  <router-view />
+  <Toolbar />
+  <div class="app__content-wrapper">
+    <div class="app__content">
+      <router-view />
+    </div>
+  </div>
 </template>
 
+<script lang="ts">
+import { defineComponent } from "vue";
+import Toolbar from "./components/Toolbar/index.vue";
+
+export default defineComponent({
+  name: "App",
+  components: {Toolbar}
+});
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+@use './styles/main';
+@use './styles/vendors/vendors';
+$toolbar-height: 64px;
+$toolbar-height-mobile: 56px;
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+.app {
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+    @include vendors.media(">xs") {
+      position: sticky;
+      top: 0;
+      z-index: 1;
     }
+  }
+
+  &__toolbar-title {
+    display: inline-flex;
+    gap: 10px;
+    align-items: baseline;
+    a {
+      font-size: 0.7em;
+    }
+  }
+
+  &__content {
+    @include vendors.spread(margin, 10px 0, 50px 0);
+    @include vendors.spread(width, 90vw, 50vw);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__content-wrapper {
+    background-image: url("./assets/weather.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-sizing: border-box;
+    min-height: calc(100vh - #{$toolbar-height});
+    @include vendors.media("<=xs") {
+      min-height: calc(100vh - #{$toolbar-height-mobile});
+    }
+    display: flex;
+    justify-content: center;
+  }
+
+  &__toolbar-actions {
+    @include vendors.media("<=xs") {
+      display: none;
+    }
+
+    &--mobile {
+      @include vendors.media(">xs") {
+        display: none;
+      }
+    }
+  }
+
+  &__menu {
+    display: flex;
+    flex-direction: column;
   }
 }
 </style>

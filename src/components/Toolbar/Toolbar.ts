@@ -1,23 +1,23 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: 'toolbar',
-  components: {},
-  props: [],
-  data () {
-    return {
+  name: 'Toolbar',
+  // components: {},
+  // props: [],
+  // data () {
+  //   return {
 
-    }
-  },
-  computed: {
+  //   }
+  // },
+  // computed: {
 
-  },
-  mounted () {
+  // },
+  // mounted () {
 
-  },
-  methods: {
+  // },
+  // methods: {
 
-  }
+  // }
 });
 
 
