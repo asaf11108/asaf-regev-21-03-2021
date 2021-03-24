@@ -1,3 +1,37 @@
-.toolbar {
+@use '../../styles//vendors/vendors';
 
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    @include vendors.media(">xs") {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    &__title {
+        display: inline-flex;
+        gap: 10px;
+        align-items: baseline;
+        a {
+            font-size: 0.7em;
+        }
+    }
+
+    &__actions {
+        @include vendors.media("<=xs") {
+            display: none;
+        }
+
+        &--mobile {
+            @include vendors.media(">xs") {
+                display: none;
+            }
+        }
+    }
+
+    &__menu {
+        display: flex;
+        flex-direction: column;
+    }
 }
