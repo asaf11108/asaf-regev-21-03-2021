@@ -1,20 +1,12 @@
 import { defineComponent } from "vue";
-import { Field, Form, ErrorMessage } from 'vee-validate';
+import Autocomplete from "../../components/Autocomplete/index.vue";
 
 export default defineComponent({
   name: "Home",
   components: {
-    Field,
-    Form,
-    ErrorMessage,
+    Autocomplete,
   },
   methods: {
-    isRequired(value: string) {
-      if (value && value.trim()) {
-        return true;
-      }
-
-      return 'This is required';
-    },
+    
   },
 });
