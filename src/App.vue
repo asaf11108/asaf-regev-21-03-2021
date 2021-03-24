@@ -1,8 +1,4 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/favorites">Favorites</router-link>
-  </div>
   <Toolbar />
   <div class="app__content-wrapper">
     <div class="app__content">
@@ -24,8 +20,8 @@ export default defineComponent({
 <style lang="scss">
 @use './styles/main';
 @use './styles/vendors/vendors';
-$toolbar-height: 64px;
-$toolbar-height-mobile: 56px;
+$toolbar-height: 54px;
+$toolbar-height-mobile: 54px;
 
 .app {
   &__toolbar {

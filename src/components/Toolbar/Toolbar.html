@@ -4,4 +4,13 @@
     <a href="https://cors-anywhere.herokuapp.com/corsdemo">CORS</a>
     <a href="https://asaf11108.github.io/asaf-regev-06-03-2021/">GitHub</a>
   </span>
+
+  <span class="app__toolbar-actions">
+    <router-link :to="{ name:'Home' }" v-slot="{ isActive }">
+      <button type="button" class="btn" :class="[isActive && 'btn-primary']">Home</button>
+    </router-link>
+    <router-link :to="{ name:'Favorites' }" v-slot="{ isActive }">
+      <button type="button" class="btn" :class="[isActive && 'btn-primary']">Favorites</button>
+    </router-link>
+  </span>
 </nav>
