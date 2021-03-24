@@ -18,6 +18,14 @@
         }
     }
 
+    &__links {
+        display: inline-flex;
+        gap: 10px;
+        @include vendors.media('<=xs') {
+            display: none;
+        }
+    }
+
     &__actions {
         @include vendors.media("<=xs") {
             display: none;

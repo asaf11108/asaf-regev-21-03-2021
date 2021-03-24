@@ -1,11 +1,13 @@
-<nav class="navbar navbar-light px-2" style="background-color: #f1f4f7;">
+<nav class="navbar navbar-light px-2 toolbar" style="background-color: #f1f4f7;">
   <span class="navbar-brand mb-0 h1 app__toolbar-title">
     <span>Herolo Weather Task</span>
-    <a href="https://cors-anywhere.herokuapp.com/corsdemo">CORS</a>
-    <a href="https://asaf11108.github.io/asaf-regev-06-03-2021/">GitHub</a>
+    <span class="toolbar__links">
+      <a href="https://cors-anywhere.herokuapp.com/corsdemo">Allow CORS</a>
+      <a href="https://asaf11108.github.io/asaf-regev-06-03-2021/">GitHub</a>
+    </span>
   </span>
 
-  <span class="app__toolbar-actions">
+  <span class="toolbar__actions">
     <router-link :to="{ name:'Home' }" v-slot="{ isActive }">
       <button type="button" class="btn" :class="[isActive && 'btn-primary']">Home</button>
     </router-link>
@@ -13,4 +15,6 @@
       <button type="button" class="btn" :class="[isActive && 'btn-primary']">Favorites</button>
     </router-link>
   </span>
+
+  
 </nav>
