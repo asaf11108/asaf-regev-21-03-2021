@@ -4,10 +4,11 @@
     <Field
       type="search"
       name="query"
-      :rules="validateQuery"
       class="form-control"
       placeholder="Search location"
       autocomplete="off"
+      v-model="inputQuery"
+      :rules="validateQuery"
       :validateOnChange="true"
       :validateOnBlur="true"
       @focus="handleFocus()"
