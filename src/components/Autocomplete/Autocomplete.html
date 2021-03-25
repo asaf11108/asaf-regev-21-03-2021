@@ -18,6 +18,7 @@
         v-for="country in countries"
         class="autocomplete__options-items"
         :class="{'btn-primary': selectedOption === country}"
+        @mousedown="handleSelect(country)"
       >
         {{ country }}
       </option>

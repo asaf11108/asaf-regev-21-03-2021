@@ -33,12 +33,15 @@ export default defineComponent({
       return true;
     },
     handleFocus() {
-      console.log('focus');
       this.showOptions = true;
     },
     handleBlur() {
-      console.log('blur');
       this.showOptions = false;
+    },
+    handleSelect(country: string) {
+      this.showOptions = false;
+      this.selectedOption = country;
+      this.$emit('select', country);
     }
   },
 });
