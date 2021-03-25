@@ -10,7 +10,18 @@
       autocomplete="off"
       :validateOnChange="true"
       :validateOnBlur="true"
+      @focus="handleFocus()"
+      @blur="handleBlur()"
     />
+    <div v-if="showOptions" class="autocomplete__options">
+      <option
+        v-for="country in countries"
+        class="autocomplete__options-items"
+        :class="{'btn-primary': selectedOption === country}"
+      >
+        {{ country }}
+      </option>
+    </div>
     <ErrorMessage name="query" class="invalid-feedback autocomplete__error"/>
   </Form>
 </div>
