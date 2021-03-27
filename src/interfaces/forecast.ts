@@ -1,20 +1,20 @@
 export interface ForecastsHttpResponse {
-    DailyForecasts: ForecastHttpResponse[];
+  DailyForecasts: ForecastHttpResponse[];
 }
 
 export interface ForecastHttpResponse {
-    Date: string;
-    Temperature: {
-        Minimum: {
-            Value: number;
-        }
-    },
-    Day: {
-        Icon: number;
-    }
+  Date: string;
+  Temperature: {
+    Minimum: {
+      Value: number;
+    };
+  };
+  Day: {
+    Icon: number;
+  };
 }
 
 export interface Forecast {
-    title: string;
-    temperature: number
+  title: string;
+  temperature: number;
 }

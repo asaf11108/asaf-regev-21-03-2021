@@ -1,15 +1,14 @@
 export interface CurrentConditions {
-    WeatherText: string;
-    WeatherIcon: number;
-    Temperature: Temperature;
-
+  WeatherText: string;
+  WeatherIcon: number;
+  Temperature: Temperature;
 }
 
 export interface Temperature {
-    Metric: Metric;
+  Metric: Metric;
 }
 
 export interface Metric {
-    Value: number;
-    Unit: string;
+  Value: number;
+  Unit: string;
 }

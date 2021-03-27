@@ -1,10 +1,10 @@
-import { ForecastHttpResponse } from '../interfaces/forecast';
-import { IApiService } from './api,interface';
+import { ForecastHttpResponse } from "../interfaces/forecast";
+import { IApiService } from "./api,interface";
 import { LocationHttpResponse } from "../interfaces/location";
-import { tap } from 'rxjs/operators';
-import { CurrentConditions } from '../interfaces/current-conditions';
+import { tap } from "rxjs/operators";
+import { CurrentConditions } from "../interfaces/current-conditions";
 
-
+/* eslint-disable */
 export default class implements IApiService {
 
   getLocations(query: string): Promise<LocationHttpResponse[]> {

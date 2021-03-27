@@ -1,5 +1,5 @@
-import { Location } from './../../interfaces/location';
-import { IApiService } from './../../services/api,interface';
+import { Location } from "./../../interfaces/location";
+import { IApiService } from "./../../services/api,interface";
 import { defineComponent, inject, PropType } from "vue";
 import { Field, Form, ErrorMessage } from "vee-validate";
 import { debounce } from "lodash-es";
@@ -16,10 +16,10 @@ export default defineComponent({
       type: Object as PropType<Location>,
       required: true,
       default: {
-        key: '215854',
-        localizedName: 'Tel Aviv'
-      }
-    }
+        key: "215854",
+        localizedName: "Tel Aviv",
+      },
+    },
   },
   data() {
     return {
@@ -27,22 +27,31 @@ export default defineComponent({
       selectedOption: this.selectedOptionProp,
       showOptions: false,
       query: this.selectedOptionProp.localizedName,
-    }
+    };
   },
-  mounted () {
-    const apiService = inject('apiService') as IApiService;
+  mounted() {
+    const apiService = inject("apiService") as IApiService;
     const getLocations = (query: string) => {
-      apiService.getLocations(query)
-          .then(res => res.map(location => ({ key: location.Key, localizedName: location.LocalizedName })))
-          .then(res => this.locations = res);
+      apiService
+        .getLocations(query)
+        .then((res) =>
+          res.map((location) => ({
+            key: location.Key,
+            localizedName: location.LocalizedName,
+          }))
+        )
+        .then((res) => (this.locations = res));
     };
 
     getLocations(this.query);
-    this.$watch('query', debounce((newVal: string, oldVal: string) => {
-      if (newVal !== oldVal && this.validateQuery(newVal) === true) {
-        getLocations(newVal);
-      }
-    }, 1000));
+    this.$watch(
+      "query",
+      debounce((newVal: string, oldVal: string) => {
+        if (newVal !== oldVal && this.validateQuery(newVal) === true) {
+          getLocations(newVal);
+        }
+      }, 1000)
+    );
   },
   methods: {
     validateQuery(value: string) {
@@ -64,7 +73,7 @@ export default defineComponent({
       this.showOptions = false;
       this.query = location.localizedName;
       this.selectedOption = location;
-      this.$emit('select', location);
-    }
+      this.$emit("select", location);
+    },
   },
 });

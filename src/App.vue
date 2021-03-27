@@ -17,8 +17,10 @@ export default defineComponent({
   name: "App",
   components: { Toolbar },
   provide: {
-    apiService: JSON.parse(process.env.VUE_APP_PRODUCTION) ? new apiService() : new apiMockService()
-  }
+    apiService: JSON.parse(process.env.VUE_APP_PRODUCTION)
+      ? new apiService()
+      : new apiMockService(),
+  },
 });
 </script>
 
