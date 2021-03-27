@@ -7,8 +7,6 @@ import { CurrentConditions } from '../interfaces/current-conditions';
 
 export default class implements IApiService {
 
-  constructor() { }
-
   getLocations(query: string): Promise<LocationHttpResponse[]> {
     if ('tel aviv'.toLowerCase().includes(query.toLowerCase())) {
       return Promise.resolve([{ "Version": 1, "Key": "215854", "Type": "City", "Rank": 31, "LocalizedName": "Tel Aviv", "Country": { "ID": "IL", "LocalizedName": "Israel" }, "AdministrativeArea": { "ID": "TA", "LocalizedName": "Tel Aviv" } }]);

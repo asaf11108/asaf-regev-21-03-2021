@@ -10,10 +10,15 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import Toolbar from "./components/Toolbar/index.vue";
+import apiMockService from "./services/api.mock.service";
+import apiService from "./services/api.service";
 
 export default defineComponent({
   name: "App",
   components: { Toolbar },
+  provide: {
+    apiService: JSON.parse(process.env.VUE_APP_PRODUCTION) ? new apiService() : new apiMockService()
+  }
 });
 </script>
 
