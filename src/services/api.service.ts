@@ -28,31 +28,31 @@ export default class implements IApiService {
         this.API_KEY
       }&q=${encodeURIComponent(query)}`
     )
-      .then((res) => res.json() as Promise<LocationHttpResponse[]>)
+      .then(res => res.json() as Promise<LocationHttpResponse[]>)
       .catch(() => {
         this.handleError();
         return this.apiMockService.getLocations(query);
       });
   }
 
-  // getCurrentConditions(key: string): Observable<CurrentConditions[]> {
-  //   return this.http.get<CurrentConditions[]>(`${this.HTTP_PREFIX}${this.ENDPOINT}currentconditions/v1/${key}?apikey=${this.API_KEY}`).pipe(
-  //     catchError(() => {
-  //       this.handleError();
-  //       return this.apiMockService.getCurrentConditions(key);
-  //     })
-  //   )
-  // }
+  getCurrentConditions(key: string): Promise<CurrentConditions[]> {
+    return fetch(`${this.HTTP_PREFIX}${this.ENDPOINT}currentconditions/v1/${key}?apikey=${this.API_KEY}`)
+      .then(res => res.json() as Promise<CurrentConditions[]>)
+      .catch(() => {
+        this.handleError();
+        return this.apiMockService.getCurrentConditions(key);
+      })
+  }
 
-  // getForecasts(key: string): Observable<ForecastHttpResponse[]> {
-  //   return this.http.get<ForecastsHttpResponse>(`${this.HTTP_PREFIX}${this.ENDPOINT}forecasts/v1/daily/5day/${key}?apikey=${this.API_KEY}&metric=true`).pipe(
-  //     map(res => res.DailyForecasts),
-  //     catchError(() => {
-  //       this.handleError();
-  //       return this.apiMockService.getForecasts(key);
-  //     })
-  //   )
-  // }
+  getForecasts(key: string): Promise<ForecastHttpResponse[]> {
+    return fetch(`${this.HTTP_PREFIX}${this.ENDPOINT}forecasts/v1/daily/5day/${key}?apikey=${this.API_KEY}&metric=true`)
+      .then(res => res.json() as Promise<ForecastsHttpResponse>)
+      .then(res => res.DailyForecasts)
+      .catch(() => {
+        this.handleError();
+        return this.apiMockService.getForecasts(key);
+      });
+  }
 
   handleError(): void {
     // this._snackBar.open(this.BAD_REQUEST, '', { duration: 2000 });
