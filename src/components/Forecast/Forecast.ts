@@ -6,17 +6,17 @@ export default defineComponent({
   props: {
     forecast: Object as PropType<Forecast>
   },
-  setup(prop) {
-    console.log(prop.forecast)
+  // setup(prop) {
+  //   console.log(prop.forecast)
 
-    const buildIconUrl = (icon: string): string => {
-      if (!icon) {
-        return '';
-      }
-      return `../../assets/weather-icons/${icon}.png`;
-    }
+  //   const buildIconUrl = (icon: string): string => {
+  //     if (!icon) {
+  //       return '';
+  //     }
+  //     return `../../assets/weather-icons/${icon}.png`;
+  //   }
 
-    // forecast.value = { ...forecast.value, icon: buildIconUrl(forecast.value.icon) }
+  //   // forecast.value = { ...forecast.value, icon: buildIconUrl(forecast.value.icon) }
 
-  }
+  // }
 });

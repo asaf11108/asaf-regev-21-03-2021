@@ -2,9 +2,9 @@ import { Forecast as IForecast } from './../../interfaces/forecast';
 import { IApiService } from './../../services/api,interface';
 import { defineComponent, inject, reactive, ref } from "vue";
 import Autocomplete from "../../components/Autocomplete/index.vue";
+import Forecast from '../../components/Forecast/index.vue';
 import { Location } from "../../interfaces/location";
 import { format } from 'date-fns';
-import Forecast from '../../components/Forecast/Forecast';
 
 export default defineComponent({
   name: "Home",
