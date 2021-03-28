@@ -19,7 +19,7 @@
           <h1 class="home__body-header">{{favoriteLocation.weatherText}}</h1>
         </div>
         <div class="home__forecasts">
-          <Forecast v-for="forecast in favoriteLocation.forecasts" :key="forecast.title" :forecast="forecast"></Forecast>
+          <Forecast v-for="forecast in favoriteLocation.forecasts" :key="forecast.title" :forecastProp="forecast"></Forecast>
         </div>
       </div>
 

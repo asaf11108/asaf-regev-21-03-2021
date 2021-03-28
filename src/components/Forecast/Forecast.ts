@@ -1,22 +1,24 @@
-import { Forecast } from './../../interfaces/forecast';
-import { defineComponent, Prop, PropType, ref } from "vue";
+import { ForecastData } from './forecast.data';
+import { computed, defineComponent, PropType } from "vue";
 
 export default defineComponent({
   name: "Forecast",
   props: {
-    forecast: Object as PropType<Forecast>
+    forecastProp: {
+      type: Object as PropType<ForecastData>,
+      required: true
+    }
   },
-  // setup(prop) {
-  //   console.log(prop.forecast)
+  setup(props) {
+    const buildIconUrl = (icon?: string): string => {
+      if (!icon) {
+        return '';
+      }
+      return `../../assets/weather-icons/${icon}.png`;
+    }
 
-  //   const buildIconUrl = (icon: string): string => {
-  //     if (!icon) {
-  //       return '';
-  //     }
-  //     return `../../assets/weather-icons/${icon}.png`;
-  //   }
+    const forecast = computed(() => ({ ...props.forecastProp, icon: buildIconUrl(props.forecastProp.icon) }));
 
-  //   // forecast.value = { ...forecast.value, icon: buildIconUrl(forecast.value.icon) }
-
-  // }
+    return { forecast };
+  }
 });

@@ -2,6 +2,8 @@
   <h5 class="card-title">
       <p>{{ forecast.title }}</p>
       <p>{{forecast.temperature}}&#176;C</p>
-      <!-- <img v-If="forecast.icon" :src="forecast.icon" /> -->
+      <div v-if="forecast.icon">
+        <img :src="forecast.icon" />
+      </div>
   </h5>
 </div>
