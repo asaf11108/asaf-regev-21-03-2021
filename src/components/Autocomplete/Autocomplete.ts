@@ -14,7 +14,7 @@ export default defineComponent({
   props: {
     selectedOptionProp: {
       type: Object as PropType<Location>,
-      required: true
+      required: true,
     },
   },
   data() {

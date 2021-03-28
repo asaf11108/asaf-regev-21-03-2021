@@ -4,6 +4,6 @@ import { LocationHttpResponse } from "../interfaces/location";
 
 export interface IApiService {
   getLocations(query: string): Promise<LocationHttpResponse[]>;
-  getCurrentConditions(key: string) : Promise<CurrentConditions[]>;
+  getCurrentConditions(key: string): Promise<CurrentConditions[]>;
   getForecasts(key: string): Promise<ForecastHttpResponse[]>;
 }
