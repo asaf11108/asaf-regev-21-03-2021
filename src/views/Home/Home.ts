@@ -5,6 +5,7 @@ import Autocomplete from "../../components/Autocomplete/index.vue";
 import Forecast from "../../components/Forecast/index.vue";
 import { Location } from "../../interfaces/location";
 import { format } from "date-fns";
+import { useStore } from "../../store";
 
 export default defineComponent({
   name: "Home",
@@ -13,6 +14,7 @@ export default defineComponent({
     Forecast,
   },
   setup() {
+    const store = useStore();
     const selectedOption: Location = reactive({
       key: "215854",
       localizedName: "Tel Aviv",
