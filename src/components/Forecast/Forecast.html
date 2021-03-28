@@ -1,5 +1,7 @@
-
-<section class="forecast">
-  <h1>forecast Component</h1>
-</section>
-
+<div class="forecast card">
+  <h5 class="card-title">
+      <p>{{ forecast.title }}</p>
+      <p>{{forecast.temperature}}&#176;C</p>
+      <img *ngIf="forecast.icon" [src]="forecast.icon" />
+  </h5>
+</div>

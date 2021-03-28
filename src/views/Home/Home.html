@@ -19,7 +19,7 @@
           <h1 class="home__body-header">{{favoriteLocation.weatherText}}</h1>
         </div>
         <div class="home__forecasts">
-          <!-- <Forecast *ngFor="let forecast of favoriteLocation.forecasts" [forecastData]="forecast" /> -->
+          <Forecast v-for="forecast in favoriteLocation.forecasts" :forecast="forecast"></Forecast>
         </div>
       </div>
 
