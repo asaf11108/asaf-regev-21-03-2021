@@ -1,4 +1,27 @@
 <div class="home">
-  <Autocomplete />
+  <Autocomplete :selectedOptionProp="selectedOption" @select="handleSelect" />
+
+  <div class="home__card card">
+
+      <h5 class="home__title card-title">
+        <span>
+          <span>{{favoriteLocation.locationName}}</span>
+          <span>{{favoriteLocation.temperature}}&#176;C</span>
+        </span>
+        <!-- <button mat-flat-button [color]="'primary'" [disabled]="isLoading$ | async"
+          (click)="favoriteClick(favoriteLocation.isFavorite)">
+          {{favoriteLocation.isFavorite ? 'Remove from favorites' : 'Add to favorites' }}
+        </button> -->
+      </h5>
+
+      <div class="home__body card-body">
+        <div>
+          <h1 class="home__body-header">{{favoriteLocation.weatherText}}</h1>
+        </div>
+        <div class="home__forecasts">
+          <!-- <Forecast *ngFor="let forecast of favoriteLocation.forecasts" [forecastData]="forecast" /> -->
+        </div>
+      </div>
+
+  </div>
 </div>
-  

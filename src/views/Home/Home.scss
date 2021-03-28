@@ -1,4 +1,41 @@
+@use './../../styles/vendors/vendors';
+
 .home {
-    display: flex;
-    justify-content: center;
+
+    &__card {
+        background-color: rgba(255, 255, 255, 0.6);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    &__title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap-reverse;
+        & > span {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            align-items: center;
+        }
+    }
+
+    &__body-header {
+        @include vendors.spread(font-size, 50px, 80px);
+        text-align: center;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        @include vendors.spread(min-height, 400px, 500px);
+    }
+    
+    &__forecasts {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }

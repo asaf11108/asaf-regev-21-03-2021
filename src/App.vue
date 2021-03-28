@@ -28,7 +28,7 @@ export default defineComponent({
 @use './styles/main';
 @use './styles/vendors/vendors';
 $toolbar-height: 54px;
-$toolbar-height-mobile: 54px;
+$toolbar-height-mobile: 56px;
 
 .app {
   &__toolbar {

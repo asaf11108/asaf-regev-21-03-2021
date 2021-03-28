@@ -14,11 +14,7 @@ export default defineComponent({
   props: {
     selectedOptionProp: {
       type: Object as PropType<Location>,
-      required: true,
-      default: {
-        key: "215854",
-        localizedName: "Tel Aviv",
-      },
+      required: true
     },
   },
   data() {
