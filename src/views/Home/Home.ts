@@ -1,11 +1,12 @@
+import { FavoriteLocation } from './../../store/favorite-location.interface';
 import { Forecast as IForecast } from "./../../interfaces/forecast";
 import { IApiService } from "./../../services/api,interface";
-import { defineComponent, inject, reactive, ref } from "vue";
+import { computed, defineComponent, inject } from "vue";
 import Autocomplete from "../../components/Autocomplete/index.vue";
 import Forecast from "../../components/Forecast/index.vue";
 import { Location } from "../../interfaces/location";
 import { format } from "date-fns";
-import { useStore } from "../../store";
+import { useStore } from "vuex";
 
 export default defineComponent({
   name: "Home",
@@ -14,15 +15,19 @@ export default defineComponent({
     Forecast,
   },
   setup() {
-    const store = useStore();
-    const selectedOption: Location = reactive({
+    const selectedOption = {
       key: "215854",
       localizedName: "Tel Aviv",
-    });
-    const favoriteLocation = ref({}); //interface
-    const apiService = inject("apiService") as IApiService;
-    const getFavoriteData = (selectedOption: Location) => {
-      Promise.all([
+    };
+    const apiService = inject<IApiService>("apiService")!;
+    
+    const store = useStore();
+    const selectLoading = computed<boolean>(() => store.getters.selectLoading);
+    let favoriteLocation = computed<FavoriteLocation>(() => store.getters.selectEntityById(selectedOption.key));
+    
+    const getFavoriteData = (selectedOption: Location): Promise<void> => {
+      store.dispatch('setLoading', true);
+      return Promise.all([
         apiService.getCurrentConditions(selectedOption.key),
         apiService.getForecasts(selectedOption.key),
       ]).then((res) => {
@@ -31,25 +36,31 @@ export default defineComponent({
           title: format(new Date(forecast.Date), "EEE"),
           temperature: forecast.Temperature.Minimum.Value,
         }));
-
-        favoriteLocation.value = {
+        
+        store.commit('addEntity', {
           id: selectedOption.key,
           locationName: selectedOption.localizedName,
           temperature: currentConditions.Temperature.Metric.Value,
           weatherText: currentConditions.WeatherText,
           icon: currentConditions.WeatherIcon.toString(),
           forecasts,
-          isFavorite: false,
-        };
+        });
+        store.dispatch('setLoading', false);
       });
     };
 
     getFavoriteData(selectedOption);
 
     const handleSelect = (selectedOption: Location) => {
-      getFavoriteData(selectedOption);
+      getFavoriteData(selectedOption).then(() => {
+        favoriteLocation = computed<FavoriteLocation>(() => store.getters.selectEntityById(selectedOption.key));
+      });
     };
 
-    return { selectedOption, favoriteLocation, handleSelect };
+    const handleFavorite = (isFavorite: boolean) => {
+      console.log('handleFavorite', )
+    }
+
+    return { selectedOption, favoriteLocation, handleSelect, handleFavorite, selectLoading };
   },
 });

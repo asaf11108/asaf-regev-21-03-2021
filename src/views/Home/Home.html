@@ -1,17 +1,17 @@
 <div class="home">
   <Autocomplete :selectedOptionProp="selectedOption" @select="handleSelect" />
 
-  <div class="home__card card">
+  <div class="home__card card" v-if="favoriteLocation">
 
       <h5 class="home__title card-title">
         <span>
           <span>{{favoriteLocation.locationName}}</span>
           <span>{{favoriteLocation.temperature}}&#176;C</span>
         </span>
-        <!-- <button class="btn btn-primary" :disabled="$store"
-          @click="favoriteClick(favoriteLocation.isFavorite)">
-          {{favoriteLocation.isFavorite ? 'Remove from favorites' : 'Add to favorites' }}
-        </button> -->
+        <button class="btn btn-primary" :disabled="selectLoading"
+          @click="favoriteClick()">
+          {{false ? 'Remove from favorites' : 'Add to favorites' }}
+        </button>
       </h5>
 
       <div class="home__body card-body">

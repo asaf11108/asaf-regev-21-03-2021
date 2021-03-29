@@ -10,23 +10,16 @@ export interface State {
     active: string | null;
 }
 
-export const key: InjectionKey<Store<State>> = Symbol()
-
-// define your own `useStore` composition function
-export function useStore() {
-  return baseUseStore(key)
-}
-
 export default createStore<State>({
   state: {
-    entities: {} as { [key: string]: FavoriteLocation },
-    ids: [] as string[],
+    entities: {},
+    ids: [],
     loading: false,
-    error: null as string | null,
-    active: null as string | null
+    error: null,
+    active: null
   },
   mutations: {
-    setLoading(state, loading) {
+    setLoading(state, loading: boolean) {
       state.loading = loading;
     },
     addEntity(state, favoriteLocation: FavoriteLocation) {
@@ -39,14 +32,14 @@ export default createStore<State>({
     }
   },
   actions: {
-    setLoading({ commit }) {
-      commit('setLoading')
+    setLoading({ commit }, loading: boolean) {
+      commit('setLoading', loading)
     },
-    addEntity({ commit }) {
-      commit('addEntity')
+    addEntity({ commit }, favoriteLocation: FavoriteLocation) {
+      commit('addEntity', favoriteLocation)
     },
-    removeEntity({ commit }) {
-      commit('removeEntity')
+    removeEntity({ commit }, id: string) {
+      commit('removeEntity', id)
     }
   },
   modules: {},
@@ -57,5 +50,6 @@ export default createStore<State>({
       return state.entities[id];
     }
   },
-  strict: true
+  strict: true,
+  devtools: !JSON.parse(process.env.VUE_APP_PRODUCTION)
 });
