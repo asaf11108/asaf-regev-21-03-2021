@@ -1,7 +1,7 @@
 import { FavoriteLocation } from './../../store/favorite-location.interface';
 import { Forecast as IForecast } from "./../../interfaces/forecast";
 import { IApiService } from "./../../services/api,interface";
-import { computed, defineComponent, inject, ref } from "vue";
+import { computed, defineComponent, inject } from "vue";
 import Autocomplete from "../../components/Autocomplete/index.vue";
 import Forecast from "../../components/Forecast/index.vue";
 import { Location } from "../../interfaces/location";
@@ -23,7 +23,7 @@ export default defineComponent({
     
     const store = useStore();
     const selectLoading = computed<boolean>(() => store.getters.selectLoading);
-    let favoriteLocation = computed<FavoriteLocation>(() => store.getters.selectEntityById(selectedOption.key));
+    const favoriteLocation = computed<FavoriteLocation>(() => store.getters.selectActiveEntity);
     
     const getFavoriteData = (selectedOption: Location): Promise<void> => {
       store.dispatch('setLoading', true);
@@ -37,6 +37,7 @@ export default defineComponent({
           temperature: forecast.Temperature.Minimum.Value,
         }));
         
+        store.dispatch('setActive', selectedOption.key);
         store.commit('addEntity', {
           id: selectedOption.key,
           locationName: selectedOption.localizedName,
@@ -52,13 +53,11 @@ export default defineComponent({
     getFavoriteData(selectedOption);
 
     const handleSelect = (selectedOption: Location) => {
-      getFavoriteData(selectedOption).then(() => {
-        favoriteLocation = computed<FavoriteLocation>(() => store.getters.selectEntityById(selectedOption.key));
-      });
+      getFavoriteData(selectedOption);
     };
 
     const handleFavorite = (id:string, isFavorite: boolean) => {
-      store.dispatch('updateEntity', {id, callback: (entitiy: FavoriteLocation) => ({ ...entitiy, isFavorite })})
+      store.dispatch('updateEntity', { id, isFavorite })
     }
 
     return { selectedOption, favoriteLocation, handleSelect, handleFavorite, selectLoading };
