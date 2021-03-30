@@ -20,15 +20,17 @@ export default createStore<State>({
   },
   mutations: {
     setLoading(state, loading: boolean) {
-      state.loading = loading;
+      state = {...state, loading };
     },
     addEntity(state, favoriteLocation: FavoriteLocation) {
-      state.entities[favoriteLocation.id] = favoriteLocation;
-      state.ids.push(favoriteLocation.id);
+      state.entities = {...state.entities, [favoriteLocation.id]: favoriteLocation};
+      if (!state.ids.includes(favoriteLocation.id)) {
+        state.ids.push(favoriteLocation.id);
+      }
     },
-    removeEntity(state, id: string) {
-      delete state.entities[id];
-      state.ids = state.ids.filter(stateId => stateId !== id);
+    updateEntity(state, {id, callback}: {id: string, callback: (entity: FavoriteLocation) => FavoriteLocation}) {
+      state.entities[id] = callback(state.entities[id]);
+
     }
   },
   actions: {
@@ -38,8 +40,8 @@ export default createStore<State>({
     addEntity({ commit }, favoriteLocation: FavoriteLocation) {
       commit('addEntity', favoriteLocation)
     },
-    removeEntity({ commit }, id: string) {
-      commit('removeEntity', id)
+    updateEntity({ commit }, payload: {id: string, callback: (entity: FavoriteLocation) => FavoriteLocation}) {
+      commit('updateEntity', payload)
     }
   },
   modules: {},

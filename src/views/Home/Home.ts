@@ -1,7 +1,7 @@
 import { FavoriteLocation } from './../../store/favorite-location.interface';
 import { Forecast as IForecast } from "./../../interfaces/forecast";
 import { IApiService } from "./../../services/api,interface";
-import { computed, defineComponent, inject } from "vue";
+import { computed, defineComponent, inject, ref } from "vue";
 import Autocomplete from "../../components/Autocomplete/index.vue";
 import Forecast from "../../components/Forecast/index.vue";
 import { Location } from "../../interfaces/location";
@@ -57,8 +57,8 @@ export default defineComponent({
       });
     };
 
-    const handleFavorite = (isFavorite: boolean) => {
-      console.log('handleFavorite', )
+    const handleFavorite = (id:string, isFavorite: boolean) => {
+      store.dispatch('updateEntity', {id, callback: (entitiy: FavoriteLocation) => ({ ...entitiy, isFavorite })})
     }
 
     return { selectedOption, favoriteLocation, handleSelect, handleFavorite, selectLoading };

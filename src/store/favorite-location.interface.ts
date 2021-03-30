@@ -7,4 +7,5 @@ export interface FavoriteLocation {
   temperature: number;
   icon: string;
   forecasts: Forecast[];
+  isFavorite: boolean
 }

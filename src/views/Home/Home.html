@@ -9,8 +9,8 @@
           <span>{{favoriteLocation.temperature}}&#176;C</span>
         </span>
         <button class="btn btn-primary" :disabled="selectLoading"
-          @click="favoriteClick()">
-          {{false ? 'Remove from favorites' : 'Add to favorites' }}
+          @click="handleFavorite(favoriteLocation.id, !favoriteLocation.isFavorite)">
+          {{ favoriteLocation.isFavorite ? 'Remove from favorites' : 'Add to favorites' }}
         </button>
       </h5>
 
