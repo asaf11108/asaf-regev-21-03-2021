@@ -1,4 +1,4 @@
-import { Forecast } from '../interfaces/forecast';
+import { Forecast } from "../interfaces/forecast";
 
 export interface FavoriteLocation {
   id: string;
@@ -7,5 +7,5 @@ export interface FavoriteLocation {
   temperature: number;
   icon: string;
   forecasts: Forecast[];
-  isFavorite: boolean
+  isFavorite: boolean;
 }

@@ -1,12 +1,12 @@
-import { FavoriteLocation } from './favorite-location.interface';
-import { createStore } from 'vuex'
+import { FavoriteLocation } from "./favorite-location.interface";
+import { createStore } from "vuex";
 
 export interface State {
   entities: { [key: string]: FavoriteLocation };
-    ids: string[];
-    loading: boolean;
-    error: string | null;
-    active: string | null;
+  ids: string[];
+  loading: boolean;
+  error: string | null;
+  active: string | null;
 }
 
 export default createStore<State>({
@@ -15,7 +15,7 @@ export default createStore<State>({
     ids: [],
     loading: false,
     error: null,
-    active: null
+    active: null,
   },
   mutations: {
     setLoading(state, loading: boolean) {
@@ -25,35 +25,40 @@ export default createStore<State>({
       state.active = active;
     },
     addEntity(state, favoriteLocation: FavoriteLocation) {
-      state.entities[favoriteLocation.id] =  { ...state.entities[favoriteLocation.id], ...favoriteLocation };
+      state.entities[favoriteLocation.id] = {
+        ...state.entities[favoriteLocation.id],
+        ...favoriteLocation,
+      };
       if (!state.ids.includes(favoriteLocation.id)) {
         state.ids.push(favoriteLocation.id);
       }
     },
-    updateEntity(state, {id, isFavorite}: {id: string, isFavorite: boolean}) {
+    updateEntity(
+      state,
+      { id, isFavorite }: { id: string; isFavorite: boolean }
+    ) {
       state.entities[id].isFavorite = isFavorite;
-
-    }
+    },
   },
   actions: {
     setLoading({ commit }, loading: boolean) {
-      commit('setLoading', loading)
+      commit("setLoading", loading);
     },
     setActive({ commit }, active: string) {
-      commit('setActive', active)
+      commit("setActive", active);
     },
     addEntity({ commit }, favoriteLocation: FavoriteLocation) {
-      commit('addEntity', favoriteLocation)
+      commit("addEntity", favoriteLocation);
     },
-    updateEntity({ commit }, payload: {id: string, isFavorite: boolean}) {
-      commit('updateEntity', payload)
-    }
+    updateEntity({ commit }, payload: { id: string; isFavorite: boolean }) {
+      commit("updateEntity", payload);
+    },
   },
   modules: {},
   getters: {
-    selectLoading: state => state.loading,
-    selectActive: state => state.active,
-    selectEntities: state => state.ids.map(id => state.entities[id]),
+    selectLoading: (state) => state.loading,
+    selectActive: (state) => state.active,
+    selectEntities: (state) => state.ids.map((id) => state.entities[id]),
     selectEntityById: (state) => (id: string) => {
       return state.entities[id];
     },
@@ -65,5 +70,5 @@ export default createStore<State>({
     },
   },
   strict: true,
-  devtools: !JSON.parse(process.env.VUE_APP_PRODUCTION)
+  devtools: !JSON.parse(process.env.VUE_APP_PRODUCTION),
 });
