@@ -1,7 +1,7 @@
 @use './../../styles/vendors/vendors';
 
 .home {
-
+    text-align: center;
     &__card.card {
         background-color: rgba(255, 255, 255, 0.6);
         width: 100%;
