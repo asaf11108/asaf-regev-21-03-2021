@@ -15,10 +15,6 @@ export default defineComponent({
     Forecast,
   },
   setup() {
-    const selectedOption = {
-      key: "215854",
-      localizedName: "Tel Aviv",
-    };
     const apiService = inject<IApiService>("apiService") as IApiService;
 
     const store = useStore();
@@ -26,6 +22,10 @@ export default defineComponent({
     const favoriteLocation = computed<FavoriteLocation>(
       () => store.getters.selectActiveEntity
     );
+    const selectedOption = {
+      key: favoriteLocation.value.id ?? "215854",
+      localizedName: favoriteLocation.value.locationName ?? "Tel Aviv",
+    };
 
     const getFavoriteData = (selectedOption: Location): Promise<void> => {
       store.dispatch("setLoading", true);
