@@ -14,7 +14,7 @@ export default defineComponent({
       if (!icon) {
         return "";
       }
-      return `../../assets/weather-icons/${icon}.png`;
+      return require(`../../assets/weather-icons/${icon}.png`);
     };
 
     const forecast = computed(() => ({
