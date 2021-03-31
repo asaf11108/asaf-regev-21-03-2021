@@ -14,7 +14,7 @@ export default defineComponent({
         const router = useRouter();
         const store = useStore();
 
-        const favoriteLocation = computed<FavoriteLocation[]>(() => (store.getters.selectEntities as FavoriteLocation[]).filter(favoriteLocation => favoriteLocation.isFavorite));
+        const favoriteLocations = computed<FavoriteLocation[]>(() => (store.getters.selectEntities as FavoriteLocation[]).filter(favoriteLocation => favoriteLocation.isFavorite));
 
         const handleForecast = (favoriteLocation: FavoriteLocation): void => {
             store.dispatch('setActive', favoriteLocation.id);
@@ -25,6 +25,6 @@ export default defineComponent({
             return ({ title: favoriteLocation.locationName, temperature: favoriteLocation.temperature, icon: favoriteLocation.icon })
         }
 
-        return { favoriteLocation, handleForecast, mapToForecastComponent };
+        return { favoriteLocations, handleForecast, mapToForecastComponent };
     }
 });
