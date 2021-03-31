@@ -1,5 +1,9 @@
-<section>
-    <div class="about">
-        <h1>This is an favorites page1</h1>
-    </div>
-</section>
+<div class="favorites">
+    <Forecast
+        class="favorites__forecast"
+        v-for="favoriteLocation in favoriteLocations"
+        :key="favoriteLocation.id"
+        :forecastData="mapToForecastComponent(favoriteLocation)"
+        @click="handleForecast(favoriteLocation)"
+    ></Forecast>
+</div>
