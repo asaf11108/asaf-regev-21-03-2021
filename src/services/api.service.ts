@@ -10,8 +10,7 @@ import {
 
 export default class implements IApiService {
   readonly API_KEY = "gRf4KNnswLuVm8mG3puAI1GUOGeJTu1v";
-  readonly HTTP_PREFIX = "https://cors-anywhere.herokuapp.com/";
-  readonly ENDPOINT = "http://dataservice.accuweather.com/";
+  readonly ENDPOINT = "https://dataservice.accuweather.com/";
   readonly BAD_REQUEST = " Unable to retrieve data. Switched to mock data.";
   readonly apiMockService: IApiService;
 
@@ -22,9 +21,7 @@ export default class implements IApiService {
 
   getLocations(query: string): Promise<LocationHttpResponse[]> {
     return fetch(
-      `${this.HTTP_PREFIX}${
-        this.ENDPOINT
-      }locations/v1/cities/autocomplete?apikey=${
+      `${this.ENDPOINT}locations/v1/cities/autocomplete?apikey=${
         this.API_KEY
       }&q=${encodeURIComponent(query)}`
     )
@@ -37,7 +34,7 @@ export default class implements IApiService {
 
   getCurrentConditions(key: string): Promise<CurrentConditions[]> {
     return fetch(
-      `${this.HTTP_PREFIX}${this.ENDPOINT}currentconditions/v1/${key}?apikey=${this.API_KEY}`
+      `${this.ENDPOINT}currentconditions/v1/${key}?apikey=${this.API_KEY}`
     )
       .then((res) => res.json() as Promise<CurrentConditions[]>)
       .catch(() => {
@@ -48,7 +45,7 @@ export default class implements IApiService {
 
   getForecasts(key: string): Promise<ForecastHttpResponse[]> {
     return fetch(
-      `${this.HTTP_PREFIX}${this.ENDPOINT}forecasts/v1/daily/5day/${key}?apikey=${this.API_KEY}&metric=true`
+      `${this.ENDPOINT}forecasts/v1/daily/5day/${key}?apikey=${this.API_KEY}&metric=true`
     )
       .then((res) => res.json() as Promise<ForecastsHttpResponse>)
       .then((res) => res.DailyForecasts)
